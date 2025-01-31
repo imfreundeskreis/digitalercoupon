@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+	<meta charset="utf-8">
+	<title>Digitaler Coupon</title>
+    <script src="create_account.js"></script>
+    <script src="noble-ed25519.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+    <script type="text/javascript" src="qrcode.min.js"></script>
+    <script type="text/javascript" src="aux.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="echt freies Freigeld" />
+    <meta http-equiv="Pragma" content="no-cache" />
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="container">
+      <div id="header">
+        <h1 id="header-text">Konto erstellen</h1>
+      </div>
+      <!-- <div class="content">
+        <p class="icon">
+            <img src="./images/key-pair.png" alt="Schlüsselpaar" width="50%vw""/>
+        </p>
+      </div> -->
+      
+      <div class="content" id="CreateAccountStart">
+        <p>
+            Dein Schlüsselpaar dient dir als 
+            <ul>
+                <li>digitale Unterschrift</li>
+                <li>Konto-Adresse (vgl. SEPA/ IBAN)</li>
+                <li>Freundeskreis-ID-Karte</li>
+            </ul>
+            Das Schlüsselpaar besteht aus einem <strong>öffentlichen</strong> und einem <strong>geheimen</strong> Schlüssel. Mache deinen öffentlichen Schlüssel so weit wie möglich bekannt.<br>
+            <strong>Halte deinen <em>geheimen</em> Schlüssel <u>GEHEIM !</u></strong>
+        </p>
+        <br>
+        <button id="GenerateKeyPairBtn" class="btn3D" title="Schlüsselpaar erzeugen.">Schlüsselpaar erzeugen</button>
+      </div>  
+     
+      <div id='CreateAccountFirstStep' class="content" hidden="true">
+        <label>GEHEIMER Schlüssel</label>
+        <br>
+        <textarea  id="SecKey" class="SecKeyOutput" readonly="true" rows="1"></textarea>
+        <br>
+        <br>
+        <label>ÖFFENTLICHER Schlüssel</label>
+        <br>
+        <textarea  id="PubKey" class="PubKeyOutput" readonly="true"  rows="1"></textarea>
+        <br>
+        <br>
+        <button id="KeyPairToClipboardBtn" class="btn3D" title="kopiere in Zwischenablage.">in die Zwischenablage</button>
+        <button id="CouponToFileButton" class="btn3D" title="als Datei speichern.">in eine Datei</button>
+        <button id="QRcodeBtn" class="btn3D" title="QR-Code generieren.">QR-Code generieren</button>
+        <div id="qrcode" hidden=></div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>

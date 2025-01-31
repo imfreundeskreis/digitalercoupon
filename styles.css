@@ -1,0 +1,211 @@
+/* first settings for all mobils with less then 480px */
+:root {
+    font-size: 100%; /* use font size set by user ! */
+    --container-bg-color:  #1C1C1E  ;
+    --usable-screen-width: clientWidth; /* calc(100vw - calc(100vw - 100%)); */
+    --scaled-unit: calc( 1vw + 0.5 * ( 100vw - 360px ) / 1920 );
+    --container-width: width: calc(340px + 0.5*(100vw - 360px));
+    /* font-size:calc(16px + (28 - 16) * ((100vw - 360px) / 1560)); */
+}
+body, html {
+    width: var( --usable-screen-width );
+    color: #FBFBFB;
+    background-color: var(--container-bg-color);
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    vertical-align: top;
+    display: flex;
+    align-items: center;
+}
+html {
+    font-family: 'Helvetica', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 100%;  /* use user defined font size     */
+    /* background-image: url( './images/home.svg' ); */
+}
+a {
+    text-decoration: none;
+    color: #0A84FF;
+}
+#container {
+    height: 100vh;
+    width: calc(340px + 0.75*(100vw - 360px));
+    padding: 0vh 5vw  2vh 5vw;
+}
+#header {
+    margin: calc(20px + 2vw) 0;
+    height: 3vh;
+    text-align: center;
+    flex-basis: 100%;
+}
+#Title {
+    font-size:calc(1.5rem + (40 - 16) * ((100vw - 360px) / 1560));
+}
+h1 {
+    justify-content: center;
+    text-align: left;
+}
+label {
+    white-space: wrap;
+    justify-content: left;
+}
+.wrappable {
+    white-space:normal;
+}
+textarea {
+    width: var(--container-bg-color);
+    font-size: calc(1rem + (28 - 16) * ((100vw - 360px) / 1560));
+    margin: 1vw 0;
+}
+input {
+    margin: 1vw 0;
+}
+select {
+    font-size:calc(1rem + (28 - 16) * ((100vw - 360px) / 1560));
+    height: calc(35px + (100vw -  360px)/90);
+}
+.content {
+    font-size:calc(1.4rem + (28 - 16) * ((100vw - 360px) / 1560));
+    margin: 1.75vw auto;
+}
+.icon{
+    width: calc(100px + (100vw - 360px)/25);
+    height: calc(100px + (100vw - 360px)/25);
+    position: relative;
+    margin: auto;
+}
+.grid-content > img{
+    width: 10vw;
+}
+.grid-content {
+    width: 60vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
+    gap: 2vw;
+    row-gap: 2vw;
+    column-gap: 1vw;
+}
+#SecKey, #PubKey{
+    width: 70vw;
+    font-size: calc(1rem + (28 - 16) * ((100vw - 360px) / 1560));
+}
+.PubKeyOutput {
+    background-color: #30D158;
+    border: none;
+}
+.SecKeyOutput {
+    background-color: #ed333b;
+    border: none;
+}
+#CreateAccountFirstStep {
+    margin: 2vw 0vw;
+}
+#qrcode {
+    width: 256px;
+    padding: 3px;
+    margin: 1vw;
+    background-color: #FBFBFB;
+}
+button {
+    --button-width: calc(200px + 7vw);
+    color:aliceblue;
+    background-color: hsl(0,0%,30%);
+    box-shadow: 0 2vw 2vw 0 rgba(0, 0, 0, 0.5);
+    border-radius: calc((200px + 7vw)/5/10);
+    width : var(--button-width);
+    height: calc( ( var(--button-width) ) / 5 );
+    font-size: calc(1rem + (28 - 16) * ((100vw - 360px) / 1560));
+    margin: calc(3px + 0.5vw);
+}
+button:hover{
+    background-color: hsl(0, 0%, 40%);
+}
+button:active{
+    background-color: hsl(0, 0%, 50%);
+}
+/* for create coupon page*/
+.frac1 {
+    width: calc(320px + (100vw - 360px)*0.8);
+}
+.frac2 {
+    width: calc(60px + (100vw - 360px)*0.4);
+    max-width: 40vw;
+}
+.BigBtn {
+    width: calc(150px + (100vw - 360px)/25);
+    height: calc(150px + (100vw - 360px)/25);
+    border-radius: 0.5vw;
+    font-size: calc(1.5rem + (28 - 16) * ((100vw - 360px) / 1560));
+    img  {
+        width: calc(80px + (100vw - 360px)/30);
+        height: calc(80px + (100vw - 360px)/30);
+        position: relative;
+        margin: auto;
+    }
+}
+.PlusBtn {
+    width: calc(35px + (100vw -  360px)/90);
+    height: calc(35px + (100vw -  360px)/90);
+}
+.inputElem {
+    height: calc(30px + (100vw -  360px)/90);
+    font-size:calc(1.4rem + (28 - 16) * ((100vw - 360px) / 1560));
+
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: calc(20px + 3vw) 0px;
+    align-items: center;
+}
+.flex-container > div {
+    margin: 1vw;
+    text-align: center;
+    line-height: 75px;
+}
+
+    /* besser als EIN SVG das die drei icons enthält */
+.footer-icons {
+    width: 10vw;
+}
+/* popup */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }

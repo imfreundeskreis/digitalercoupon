@@ -1,0 +1,320 @@
+/**
+* CONTENTS
+* 
+* SETTINGS
+* Global...............Globally-available variables and config.
+*
+* TOOLS
+* Mixins...............Useful mixins.
+*
+* GENERIC
+* Normalize.css........A level playing field.
+* Box-sizing...........Better default `box-sizing`.
+*
+* BASE
+* Headings.............H1–H6 styles.
+*
+* OBJECTS
+* Wrappers.............Wrapping and constraining elements.
+*
+* COMPONENTS
+* Page-head............The main page header.
+* Page-foot............The main page footer.
+* Buttons..............Button elements.
+*
+* TRUMPS
+* Text.................Text helpers.
+*/
+
+/* first settings for all mobils with less then 480px */
+:root {
+    --container-bg-color:  #202024;
+    --usable-screen-width: clientWidth; /* calc(100vw - calc(100vw - 100%)); */
+    font-size: 100%; /* use font size set by user ! */
+    /* font-size:calc(16px + (28 - 16) * ((100vw - 360px) / 1560));
+    font-size: clamp(16px, calc(16px + (28 - 16) * ((100vw - 360px) / 1560)), 20px); fall back ! */
+}
+body, html {
+    width: var( --usable-screen-width );
+    color: #CECECE;
+    background-color: var(--container-bg-color);
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    vertical-align: top;
+}
+html {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* background-image: url( './images/home.svg' ); */
+}
+/*
+body {
+     font-size: calc( window.innerWidth /480px 1.25rem ); 
+     background-color: #28282C;
+}
+*/
+a {
+    text-decoration: none;
+    color: #4DA6FF;
+    font-size: calc(480px/100vw * 14vw);
+}
+#container {
+    height: 100vh;
+    width: 80vw;
+    padding: 2vw 10vw  2vh 10vw ;
+    float: left;
+    font-size: 3vw;
+    background-color: var(--container-bg-color);
+}
+#header {
+    height: 3vh;
+    font-size: 5vw;
+    text-align: center;
+}
+h1{
+    justify-content: center;
+    text-align: left;
+    border-radius: 10vw;
+}
+h2{
+    font-size: 5vw;
+}
+.content {
+    font-size: 4.5vw;
+    display: flex;
+    margin: 2vw 0;
+}
+.grid-content {
+    width: 70vw;
+    /* margin: 2vw 0; */
+    grid-auto-columns: auto;  /* align-items: center; */
+    justify-content: center;
+}
+.grid-content > div {
+    width:  45vw;
+    height: 45vw;
+    font-size: 2rem;
+    border-radius: 1.5rem;
+}
+.icon{
+    position: relative;
+    width: 25vw;
+}
+button{
+    font-weight: bold;
+    color:aliceblue;
+    background-color: hsl(0,0%,30%);
+    box-shadow: 0 2vw 2vw 0 rgba(0, 0, 0, 0.5);
+    border-radius: 3vw;
+    width: 45vw;
+    height: 45vw;
+    font-size: 2rem;
+}
+
+.grid-content > img{
+    width: 15vw;
+}
+
+.head-title{
+    font-size: 3rem;
+}
+
+/* for mobil phones */
+@media (min-width: 480px) {
+    body{
+        width:calc(100vw - calc(100vw - 100%));
+        font-size: 1.15rem;
+    }
+    h1{
+        width: 80vw;
+        font-size: 1.5rem;
+    }
+    #container {
+        padding: 0vh 10vw  2vh 10vw;
+    }
+    #header {
+        font-size: 10vw;
+        width: 60vw;
+        height: 9vh;
+    }
+    .content {
+        font-size: 4vw;
+    }
+    .grid-content {
+        width: 80vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: start;
+        gap: 2vw;
+        row-gap: 2vw;
+        column-gap: 1vw;
+        /* grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: masonry;
+        row-gap: 3vh;
+        column-gap: 1vh; */
+        padding-top: 0vh;
+    }
+    .grid-content > div {
+        width: 33vw;
+        height: 33vw;
+        font-size: 2rem;
+        border-radius: 3rem;
+    }
+    button{
+        width: 33vw;
+        height: 33vw;
+        font-size: 1.2rem;
+        border-radius: 2vw;
+    }
+}
+/* for bigger screens */
+@media (min-width: 800px) {
+    body{
+        width:calc(100vw - calc(100vw - 100%));
+        font-size: 1.15rem;
+        padding-top: 2vh;
+    }
+    h1{
+        font-size: 2.25rem;
+    }
+    #container {
+        height: 90vh;
+        width: 60vw;
+        margin: 0vh 10vw 0vh 10vw;
+        border-radius: 2vw;
+    }
+    #header {
+        font-size: 5vw;
+        width: 60vw;
+        height: 9vh;
+    }
+    .content {
+        font-size: 2.5vw;
+    }
+    .grid-content {
+        width: 60vw;
+        grid-template-columns: 18vw 18vw 18vw;
+        gap: 3vw;
+        padding-top: 3vh;
+    }
+    .grid-content > div {
+        width: 18vw;
+        height: 18vw;
+        font-size: 1.25rem;
+        border-radius: 0.9vw;
+    }
+    .icon{
+    height: 11vh;
+    }
+    button{
+        width: 18vw;
+        height: 18vw;
+        font-size: 1.25rem;
+        cursor: pointer;
+        border-radius: 1.5vw;
+    }
+    button:hover{
+        background-color: hsl(0, 0%, 40%);
+    }
+    button:active{
+        background-color: hsl(0, 0%, 50%);
+    }
+}
+/* for bigger screens like PC/ laptop*/
+@media only screen and (min-width: 1024px) {
+    body{
+        width:calc(100vw - calc(100vw - 100%));
+        font-size: 1.25rem;
+        padding-top: 2vh;
+    }
+    h1{
+        font-size: 3rem;
+    }
+    #container {
+        height: 90vh;
+        width: 60vw;
+        margin: 0vh 10vw 0vh 10vw;
+    }
+    #header {
+        font-size: 5vw;
+        width: 60vw;
+        height: 9vh;
+    }
+    .content {
+        font-size: 1.5vw;
+    }
+    .grid-content {
+        width: 60vw;
+        grid-template-columns: 13vw 13vw 13vw 13vw;
+        row-gap: 1.5vw;
+        padding-top: 3vh;
+    }
+    .grid-content > div {
+        width: 14vw;
+        height: 14vw;
+        font-size: 2rem;
+    }
+    .icon{
+        position: relative;
+        width: 14vw;
+    }
+    button{
+        width: 14vw;
+        height: 14vw;
+        font-size: 1.5rem;
+    }
+}
+/* for big screens like TV */
+@media only screen and (min-width: 1600px) {
+    body{
+        width: var( --usable-screen-width );
+        font-size: 1.15rem;
+        padding-top: 2vh;
+    }
+    h1{
+        font-size: 3rem;
+    }
+    #container {
+        height: 90vh;
+        width: 60vw;
+        margin: 0 10vw;
+    }
+    #header {
+        font-size: 5vw;
+        width: 60vw;
+        height: 9vh;
+    }
+    .content {
+        font-size: 1.5vw;
+        padding: 1vw 0;
+        margin:0;
+    }
+    .grid-content {
+        width: 60vw;
+        gap: 3vw;
+        padding: 1vw 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .grid-content > div {
+        width: 30vw;
+        height: 13vw;
+        font-size: 2rem;
+    }
+    .icon{
+        position: relative;
+        width: 13vw;
+    }
+    button{
+        width: 13vw;
+        height: 13vw;
+        font-size: 1.7rem;
+    }
+    .foooter-content{
+        width: 40vw;
+    }
+    .footer-content > img {
+        width: 10vw;
+    }
+}

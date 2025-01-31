@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<title>Digitaler Coupon</title>
+    <script src="verify_accept_coupon.js"></script>
+    <script src="aux.js"></script>
+    <script src="noble-ed25519.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+    <script type="text/javascript" src="qrcode.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="echt freies Freigeld">
+    <meta http-equiv="cache-control" content="no-cache">
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div id="page-container">
+        <div id="content-wrap">
+			<header>
+				<h1 id="header" class="headOfApp">Coupon prüfen</h1>
+			</header>
+
+            <dialog id="alert" role="dialog" aria-labelledby="alert-dialog-heading">
+                <button class="close">Schließen</button>
+                <h2 id="alert-dialog-heading">Info</h2>
+                <p>Dieses Fenster können Sie bedenkenlos wieder schließen.</p>
+                <p class="button-row">
+                  <button name="ok">OK</button>
+                </p>
+              </dialog>
+              
+            <div id="loadCoupon">
+                <input id="loadFileButton" type="file" onchange="previewFile()" /><br />
+                <p class="content"></p>
+                <textarea  id="CouponData" placeholder="Füge deinen Coupon-Text hier ein." cols="40" rows="30"></textarea>
+                <button id="VerifyBtn" class="btn3D" title="Coupon prüfen.">Coupon prüfen</button>
+            </div>
+            
+            <div id="verifyCoupon" hidden>
+
+                <div id="showCouponData">
+                    
+                </div>
+
+                <p id="standard"></p>
+                <p id="promiseText"></p>
+                <p id="Hours"></p>
+                <p id="Minutes"></p>
+                <p id="Euro"></p>
+                <p id="SilverOz"></p>
+                <p id="Talents"></p>
+                <p id="Needs"></p>
+                <p id="Contact"></p>
+                <p id="ReceiverEmailAddress"></p>
+                <p id="ReceiverPubKey"></p>
+                <p id="YourEmailAddress"></p>
+                <p id="Community"></p>
+                <p id="Number"></p>
+                <p id="Expires"></p>
+                <p id="Place"></p>
+                <p id="Location"></p>
+                <p id="Day"></p>
+                <p id="Month"></p>
+                <p id="Year"></p>
+                <p id="Range"></p>
+                <p id="DecreaseRate"></p>
+                <p id="Gemeinschaft"></p>
+                <p id="License"></p>
+                <p id="Law"></p>
+                <p id="CouponSplit"></p>
+                <p id="CommercialUse"></p>
+                <p id="TestCoupon"></p>
+                <p id="RestrictUsers"></p>
+                <p id="RestrictOffers"></p>
+                <p id="Guarantor"></p>
+                <p id="Date"></p>
+                <p id="PlaceOfSigning"></p>
+                <br>
+                <label id="VerificationResult"></label>
+                <button id="AcceptCouponButton" class="btn3D" title="Coupon annehmen">Coupon annehmen</button>
+                <button onclick="location.href='index.html'" type="button" id="DismissCouponButton" class="btn3D" title="Coupon ablehnen">Coupon ablehnen</button>
+            </div>    
+            
+            <div id="signAcceptance" hidden>
+                <p>Hiermit nehme ich diesen Coupon für Wert an und bestätige diese Transaktion mit meinem öffentlichen Schlüssel,</p>
+                <textarea  id="PubKey" readonly cols="40" rows="2"></textarea>
+                <p>sowie mit der Signatur mit meinem privaten Schlüssel.</p>
+                <textarea  id="SecKey" placeholder="Gebe hier deine PRIVATEN Schlüssel ein." cols="40" rows="2"></textarea>
+                <textarea  id="comments" placeholder="Optional schreibe eine Notiz." cols="40" rows="2"></textarea>
+                <button id="SignAcceptButton" class="btn3D" title="Annahme signieren">Annahme signieren</button>
+            </div>    
+            
+            <div id="processNewCoupon" hidden>
+                <textarea id="OutputCoupon" cols="40" rows="25"></textarea>
+                <button id="CouponToEmailButton" class="btn3D" title="als Email senden.">als Email senden</button>
+                <button id="CouponToClipboardButton" class="btn3D" title="in die Zwischenablage kopieren.">in die Zwischenablage kopieren</button>
+                <button id="CouponToTxtFileButton" class="btn3D" title="als Text-Datei speichern.">als Text-Datei speichern</button>
+                <button id="CouponToPDFfileButton" class="btn3D" title="als PDF-Datei speichern.">als PDF-Datei speichern</button>
+            </div>
+            <button class="btn3D" onclick="location.href='index.html'">Hauptmenü</button>
+        </div>
+    </div>
+</body>
+</html>
