@@ -131,6 +131,8 @@ button:active{
 .frac2 {
     width: calc(60px + (100vw - 360px)*0.4);
     max-width: 40vw;
+}.frac4 {
+    width: calc(60px + (100vw - 360px)*0.2);
 }
 .BigBtn {
     width: calc(150px + (100vw - 360px)/25);
@@ -152,6 +154,23 @@ button:active{
     height: calc(30px + (100vw -  360px)/90);
     font-size:calc(1.4rem + (28 - 16) * ((100vw - 360px) / 1560));
 
+}.multiLines {
+    height: calc(30px + (100vw -  360px)/90)*4;
+    font-size:calc(1.4rem + (28 - 16) * ((100vw - 360px) / 1560));
+
+}
+.checkBox {
+    width: calc(30px + (100vw -  360px)/90);
+    font-size: 110%;
+    display: inline;
+}
+input[type="checkbox"] {
+    width: calc(20px + (100vw -  360px)/90);
+    height: calc(20px + (100vw -  360px)/90);
+}
+input[type="radio"] {
+    width: calc(20px + (100vw -  360px)/90);
+    height: calc(20px + (100vw -  360px)/90);
 }
 .flex-container {
     display: flex;
