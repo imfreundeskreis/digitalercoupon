@@ -18,18 +18,19 @@
 			<div class="content">
 				<div id="Title">
 					<h1>
-						Neuer Coupon
+						Schöpfe einen
 					</h1>
 				</div>
 			</div>
 			<div class="content">
 				<div id="loadForm">
 					<select id="standard"">
-						<option value="gedanke" selected>GeDANKE ( Standard-Coupon )</option>
-						<option value="gdc_kids"> GeDANKE-Kinder-Coupon</option>
-						<option value="dank">DANK - Lichtungsbewegung Kassel</option>
+						<option value="wertbon" selected> WertBon im Freundeskreis</option>
+						<option value="gedanke"> GeDANKE ( Standard-Coupon )</option>
+						<option value="gdc_kids"> Kinder-Coupon</option>
+						<option value="dank"> DANK - Lichtung Kassel</option>
 						<option value="gutschein_fuer_freunde">Gutschein für Freunde</option>
-						<option value="eminuto">eMinuto</option>
+						<option value="eminuto"> eMinuto</option>
 						<option value="dminuto">dMinuto</option>
 						<option value="aminuto">Minuto ( analog )</option>
 						<option value="talente">Talente ( digital & analog )</option>
@@ -38,119 +39,146 @@
 						<option value="new_standard">Individuelles Freigeld gestalten.</option>
 					</select>
 				</div>
-					<br>
-					<input type="text" id="name_of_coupon" class="inputElem" placeholder="Gib deinem Freigeld einen Namen" hidden="true" size="40">
-					<br>
-					<span id="promise_text">Mein Wort an Dich: Für diesen Coupon erhältst Du die folgenden </span>
-					<input type="text" id="hours" class="inputElem" placeholder="" size="3rem"> Std
-					<input type="text" id="minutes" class="inputElem"  placeholder="" size="2rem"> Min meiner Talente oder 
-					<input type="text" class="gdc inputElem" id="euro" placeholder="" size="3"> Euro oder	
-					<input type="text" class="gdc inputElem" id="silverOz" placeholder="" size="3"> SiberUnzen oder folgende Ressource
-					<button class="btn3D PlusBtn inputElem" title="weitere Ressourcen hinzufügen.">+</button>
+				
+			<input type="text" id="name_of_coupon" class="inputElem" placeholder="Gib deinem Freigeld einen Namen" hidden="true" size="40">
+			<br>
+			<span id="promise_text">Mein Wort an Dich: Für diesen Coupon erhältst Du die folgenden </span>
+			<input type="text" id="hours" class="inputElem" placeholder="" size="3rem"> Std
+			<input type="text" id="minutes" class="inputElem"  placeholder="" size="2rem"> Min meiner Talente oder 
+			<input type="text" class="gdc inputElem" id="euro" placeholder="" size="3"> Euro oder	
+			<input type="text" class="gdc inputElem" id="silverOz" placeholder="" size="3"> SiberUnzen oder folgende Ressource
+			<button class="btn3D PlusBtn inputElem" title="weitere Ressourcen hinzufügen.">+</button>
 
-					<div class="add_ressources" hidden="true">
-						<input type="text" class="gdc inputElem" id="additional_ressources" placeholder="" size="3">
-						<select class="gdc inputElem" id="unitsSelect"></select>
-					</div>
-					<br>
-					<textarea id="talents" class="frac1 multiLines" placeholder="Talente/ Ressourcen" cols="42" rows="4"></textarea>
-					<br>
-					<textarea class="gdc frac1 multiLines" id="needs" placeholder="Bedarfe" cols="42" rows="3"></textarea>
-					<textarea class="gdc frac1 multiLines" id="comment" placeholder="Kommentar" cols="42" rows="3"></textarea>
-					<br>
-					<input type="checkbox" id="quasi_anonym" value="0"> Coupon <em>quasi-anonym</em> nutzen.
-					<br>
-					<div>
-						<hr>
-						Für deine Datensicherheit empfehlen wir folgende Felder leer zu lassen!
-						<textarea id="name" class="frac1 inputElem" placeholder="Name, Familienname" rows="1"></textarea>
-						<textarea id="place_of_birth" class="frac1 inputElem" placeholder="Geburtsort" rows="1"></textarea>
-						<textarea id="date_of_birth" class="frac4 inputElem" placeholder="Geburtsdatum" rows="1"></textarea>
-						<textarea id="BIRTH_NAME" class="frac2 inputElem" placeholder="Geburtsname" rows="1"></textarea>
-						<textarea id="street" class="frac2 inputElem" placeholder="Straße" rows="1"></textarea>
-						<textarea id="house_number" class="frac2 inputElem" placeholder="Hausnummer" rows="1"></textarea>
-						<textarea id="zip_code" class="frac2 inputElem" placeholder="PLZ und Ort" rows="1"></textarea>
-						<textarea id="residence" class="frac2 inputElem" placeholder="Wohnort" rows="1"></textarea>
-						<hr>
-					</div>
-					<textarea id="nickname" class="frac1 inputElem" placeholder="Spitzname" rows="1"></textarea>
-					<textarea id="telegram" class="frac1 inputElem" placeholder="telegram-Name" rows="1"></textarea>
-					<textarea id="website" class="frac1 inputElem" placeholder="Internet-Seite" rows="1"></textarea>
-					<textarea id="whatsapp" class="frac1 inputElem" placeholder="whatsapp-Name" rows="1"></textarea>
-					<textarea id="matrix" class="frac1 inputElem" placeholder="Matrix-Name" rows="1"></textarea>
-					<textarea class="gdc frac1 inputElem" id="contact" placeholder="weitere Kontaktdaten" cols="42" rows="3"></textarea>
+			<div class="add_ressources" hidden="true">
+				<input type="text" class="gdc inputElem" id="additional_ressources" placeholder="" size="3">
+				<select class="gdc inputElem" id="unitsSelect"></select>
+			</div>
+			<br>
+			<textarea id="talents" class="frac1 multiLines" placeholder="Talente/ Ressourcen" cols="42" rows="4"></textarea>
+			<br>
+			Die Talente/ Ressourcen werden im Radius von <input type="text" id="range" class="inputElem" placeholder="10" size="3"> km um folgenden Standort angeboten:
+			<textarea id="geo_location" class="frac1 inputElem" placeholder="Standort bspw. 46°14′06.70″N 8°0′55.60″O" rows="1"></textarea>
+			<textarea class="gdc frac1 multiLines" id="needs" placeholder="Bedarfe" cols="42" rows="3"></textarea>
+			<textarea class="gdc frac1 multiLines" id="comment" placeholder="Kommentar" cols="42" rows="3"></textarea>
+			<br>
+			<input type="checkbox" id="classification" value="0"> Coupon <em>quasi-anonym</em>  im Pool nutzen.  
+			
+			<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+			
+			<br>
+			<hr>
+			<button id="extraDataBtn" class="frac2" title="weitere Daten eintragen">weitere Daten eintragen (nicht empfohlen!)</button>
+			<div id="extraDataInputs" hidden>
+
+				Für deine Datensicherheit empfehlen wir folgende Felder leer zu lassen!
+				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+				<br>
+				<textarea id="first_name" class="frac2 inputElem" placeholder="Rufname(n)" rows="1"></textarea>
+				<textarea id="family_name" class="frac2 inputElem" placeholder="Familienname" rows="1"></textarea>
+				<br>
+				<textarea id="place_of_birth" class="frac2 inputElem" placeholder="Geburtsort" rows="1"></textarea>
+				<textarea id="date_of_birth" class="frac2 inputElem" placeholder="Geburtsdatum" rows="1"></textarea>
+				<textarea id="BIRTH_NAME" class="frac2 inputElem" placeholder="Geburtsname" rows="1"></textarea>
+				<textarea id="nationality" class="frac2 inputElem" placeholder="Nationalität" rows="1"></textarea><br>
+				<textarea id="street" class="frac2 inputElem" placeholder="Straße" rows="1"></textarea>
+				<textarea id="house_number" class="frac6 inputElem" placeholder="Nr." rows="1"></textarea>
+				<br>
+				<textarea id="zip_code" class="frac6 inputElem" placeholder="PLZ" rows="1"></textarea>
+				<textarea id="residence" class="frac2 inputElem" placeholder="Wohnort" rows="1"></textarea>
+			</div>
+			<hr>
+			Kontaktdaten
+			<br>
+			<textarea id="nickname" class="frac2 inputElem" placeholder="Spitzname" rows="1"></textarea>
+			<textarea class="gdc frac2 inputElem" id="your_email_address" placeholder="Deine Email-Adresse" cols="42" rows="1"></textarea>
+			<textarea id="telegram" class="frac2 inputElem" placeholder="telegram-Name" rows="1"></textarea>
+			<textarea id="website" class="frac2 inputElem" placeholder="Internet-Seite" rows="1"></textarea>
+			<textarea id="whatsapp" class="frac2 inputElem" placeholder="whatsapp-Name" rows="1"></textarea>
+			<textarea id="matrix" class="frac2 inputElem" placeholder="Matrix-Name" rows="1"></textarea>
+			<textarea class="gdc frac1 inputElem" id="contact" placeholder="weitere Kontaktdaten" cols="42" rows="3"></textarea>
+			<textarea class="gdc frac1 inputElem" id="community"  placeholder="Mein(e) Gemeinschaft(en)" cols="42" rows="1"></textarea>
+			<br>
+			<hr>
+			<input type="checkbox" id="split_coupon" class="inputElem" value="0"> Der Coupons ist teilbar.
+			<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+			<br>				
+			<input type="checkbox" id="onboarding" class="inputElem" value="0"> Automatisches Karten-Onboarding.
+			<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+			<br>
+			Die Schwundrate beträgt <input class="gdc inputElem" type="text" id="decrease_rate"  placeholder="0" size="1">% pro Jahr<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>  und dient 
+			<input class="gdc frac1 inputElem" type="text" id="decrease_rate"  placeholder="dem Kindergarten Neustadt e.V." size="30">
+			<br>
+			<input type="checkbox" id="test_coupon" class="checkBox" value="0"> TEST-Coupon erstellen.<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+
+			<br>
+			<input type="checkbox" id="kinder_coupon" value="0"> Kinder-Coupon erstellen. <a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+			<br>			
+			<input type="text" class="gdc frac1 inputElem" id="restrict_recipients" placeholder="Nutzerkreis begrenzen (bspw. auf deinen Schebergarten e.V.)" size="30">
+			<br>
+			<input type="text" class="gdc frac1 inputElem" id="restrict_offers" placeholder="Produktausnahmen (bspw. kein Alkohol, kein Sex)" size="30">
+			<br>
+			<input type="text" id="guarantor" class="frac1 inputElem" placeholder="Bürgen angeben" size="30">
+			<!-- <button class="btn3D PlusBtn  inputElem" title="">+</button> -->
+			<br>
+			
+			<div>
+				<hr>
+				Dieser Coupon kann <br>
+				<input type="checkbox"  checked="checked" value="non_commercial_use"> 
+				privat, nicht-kommerziell im Freundeskreis
+				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+				<br>
+				<input type="checkbox" name="option" value="commercial_use"> kommerziell, besteuert im Handelsrecht 
+				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+				<br>
+				genutzt werden.
+				<br>
+				Er ist gültig ab dem 
+				<input type="text" id="startdate" class="inputElem"  placeholder="gültig ab" size="10">
+				und verliert seinen Wert am 
+				<input type="text" id="expires" class="inputElem"  placeholder="Ablaufdatum" size="10">
+				Der Coupon ist innerhalb von  
+				<input type="text" id="acceptance_period1" class="inputElem" placeholder="14" size="3"> Tagen, ab dem Zeitpunkt der Weitergabe, anzunehmen.
+				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a> <br>
+			</div>
+			
+				<button class="btn3D PlusBtn inputElem" title="weitere Ressourcen hinzufügen.">+</button>
+				<div id="special_settings" hidden>
+					<input type="text" id="number" class="frac4 inputElem" placeholder="Nr/Code" size="10">
+
+				</div>
+
+				<div>
+					<hr>
+					<input type="radio"  checked="checked" value="send_coupon_now"> Coupon an einen Freund senden oder 
+					<input type="radio" name="option" value="save_coupon"> speichern für den späteren Gebrauch.
 					<br>
 					<textarea class="gdc  frac1 inputElem" id="receiver_email_address" placeholder="Empfänger-Email-Adresse" cols="42" rows="1"></textarea>
-					<br>
-					<label>
-						<input type="radio"  checked="checked" value="send_coupon_now"> Coupon an einen Freund senden oder 
-					</label>
-					<br>
-					<label>
-						<input type="radio" name="option" value="save_coupon"> speichern für den späteren Gebrauch.
-					</label>			
 					<textarea class="gdc frac1 inputElem" id="receiver_pub_key" placeholder="Empfänger-Public-Key" cols="42" rows="1"></textarea>
-					<br>
-					<textarea class="gdc frac1 inputElem" id="your_email_address" placeholder="Deine Email-Adresse" cols="42" rows="1"></textarea>
-					<br>
-					<textarea class="gdc frac1 inputElem" id="community"  placeholder="Ich bin Teil der Gemeinschaft" cols="42" rows="1"></textarea>
-					<br>
 					<hr>
-					Die Talente/ Ressourcen werden im Radius von <input type="text" id="range" class="inputElem" placeholder="10" size="3"> km um folgenden Standort angeboten.
-					<textarea id="geo_location" class="frac1 inputElem" placeholder="geo location" rows="1"></textarea>
-					<hr>
-					<input type="checkbox" id="split_coupon" class="inputElem" value="0"> Der Coupons ist teilbar.
-					<br>				
-					<input type="checkbox" id="onboarding" class="inputElem" value="0"> Automatisches Onboarding auf die Karte.
+				</div>
+				
+				<div>
+
+					Schöpfe (= signiere) Deinen Coupon mit deinem privaten (geheimen) Schlüssel (32 Stellen). <br>
+					<input type="text" id="your_private_key" class="frac1 inputElem" placeholder="Dein PRIVATER Schlüssel zum Signieren." size="64">
 					<br>
-					Die Schwundrate beträgt <input class="gdc inputElem" type="text" id="decrease_rate"  placeholder="0" size="1">% pro Jahr und dient <input class="gdc frac1 inputElem" type="text" id="decrease_rate"  placeholder="dem Kindergarten Neustadt e.V." size="30">
-					<br>		
-					<input type="checkbox" id="test_coupon" class="checkBox" value="0"> TEST-Coupon erstellen
+					Ort: <input type="text" id="signing_place"  class="inputElem" placeholder="Ort der Signatur" size="20">
+					Datum:  <input type="text" id="signing_date" class="frac4 inputElem" placeholder="Datum" size="10">
 					<br>
-					<input type="checkbox" id="kinder_coupon" value="0"> <strong>Kinder-Coupon erstellen</strong>.  
-					<a href="https://gedanke.imfreundeskreis.de">Erfahre mehr.</a>
-					<br>			
-					<input type="text" class="gdc frac1 inputElem" id="restrict_recipients" placeholder="Nutzerkreis begrenzen (bspw. auf deinen Schebergarten e.V.)" size="30">
+					Wichtig: Es werden nur sichtbare Daten im Coupon gespeichert!
 					<br>
-					<input type="text" class="gdc frac1 inputElem" id="restrict_offers" placeholder="Produktausnahmen (bspw. Alkohol, Sex)" size="30">
-					<br>
-					<input type="text" id="guarantor" class="frac1 inputElem" placeholder="Bürgen angeben" size="30">
-					<button class="btn3D PlusBtn  inputElem" title="">+</button>
-					<br>
-					<div>
-						<hr>
-					Der Coupon wird <br>
-						<input type="checkbox"  checked="checked" value="non_commercial_use"> 
-						privat, nicht-kommerziell im Freundeskreis genutzt. Der Rechtsweg ist ausgeschlossen. <a href="https://gedanke.imfreundeskreis.de">Erfahre mehr.</a>
-						<br>
-						<input type="checkbox" name="option" value="commercial_use"> kommerziell, besteuert im Handelsrecht genutzt.
-						<br>
-						<hr>
-						Dieser Coupon kann innerhalb von  
-						<input type="text" id="your_private_key" class="inputElem" placeholder="14" size="2"> Tagen angenommen werden.
-						<br>
-						<input type="text" id="number" class="inputElem" placeholder="Nummer/ Code" size="10">
-						<input type="text" id="expires" class="inputElem"  placeholder="Ablaufdatum" size="10">
-						<input type="text" id="startdate" class="inputElem"  placeholder="gültig ab dem" size="10">
-						<br>
-						<input type="text" id="signing_place"  class="inputElem" placeholder="Ort der Signatur" size="20">
-						<input type="text" id="signing_date" class="frac4 inputElem" placeholder="Datum" size="10">
-						<br>
-						Schöpfe (= Signiere) Deinen Coupon mit deinem privaten (geheimen) Schlüssel. <br>
-						<input type="text" id="your_private_key" class="frac1 inputElem" placeholder="Dein PRIVATER Schlüssel zum Signieren." size="42">
-						<br>
-						<button id="CreateCouponBtn" class="btn3D" title="coupon schöpfen.">Coupon schöpfen</button>
-					</div>
+					<button id="CreateCouponBtn" class="btn3D" title="coupon schöpfen.">Coupon schöpfen</button>
 				</div>
 
-				<div id="processNewCoupon" hidden>
-					<textarea id="OutputCoupon" cols="42" rows="25"></textarea>
-					<button id="CouponToEmailButton" title="als Email senden.">als Email senden</button>
-					<button id="CouponToClipboardButton" title="in die Zwischenablage kopieren.">in die Zwischenablage kopieren</button>
-					<button id="CouponToTxtFileButton" title="als Text-Datei speichern.">als Text-Datei speichern</button>
-					<button id="CouponToPDFfileButton" title="als PDF-Datei speichern.">als PDF-Datei speichern</button>
-				</div>
+			<div id="processNewCoupon" hidden>
+				<textarea id="OutputCoupon" cols="42" rows="25"></textarea>
+				<button id="CouponToEmailButton" title="als Email senden.">als Email senden</button>
+				<button id="CouponToClipboardButton" title="in die Zwischenablage kopieren.">in die Zwischenablage kopieren</button>
+				<button id="CouponToTxtFileButton" title="als Text-Datei speichern.">als Text-Datei speichern</button>
+				<button id="CouponToPDFfileButton" title="als PDF-Datei speichern.">als PDF-Datei speichern</button>
 			</div>
+		</div>
 			<!-- <div>
 				<img src="./images/no-pyramid_darkmode.svg" class="footer-icons">
 				<img src="./images/publicdomain.svg" class="footer-icons">

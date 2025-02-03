@@ -61,8 +61,8 @@ input {
     margin: 1vw 0;
 }
 select {
-    font-size:calc(1rem + (28 - 16) * ((100vw - 360px) / 1560));
-    height: calc(35px + (100vw -  360px)/90);
+    font-size:calc(1.5rem + (28 - 16) * ((100vw - 360px) / 1560));
+    height: calc(35px + (100vw -  360px)/40);
 }
 .content {
     font-size:calc(1.4rem + (28 - 16) * ((100vw - 360px) / 1560));
@@ -126,13 +126,23 @@ button:active{
 }
 /* for create coupon page*/
 .frac1 {
-    width: calc(320px + (100vw - 360px)*0.8);
+    width: calc(340px + (100vw - 360px)*0.8);
 }
 .frac2 {
-    width: calc(60px + (100vw - 360px)*0.4);
+    width: calc(170px + (100vw - 360px)*0.4);
     max-width: 40vw;
-}.frac4 {
-    width: calc(60px + (100vw - 360px)*0.2);
+}
+.frac4 {
+    width: calc(100px + (100vw - 360px)*0.2);
+}
+.frac5 {
+    width: calc(80px + (100vw - 360px)/15);
+}
+.frac6 {
+    width: calc(60px + (100vw - 360px)/20);
+}
+.frac8 {
+    width: calc(40px + (100vw - 360px)/30);
 }
 .BigBtn {
     width: calc(150px + (100vw - 360px)/25);
@@ -146,18 +156,25 @@ button:active{
         margin: auto;
     }
 }
+.TinyBtn {
+    width: calc(45px + (100vw - 360px)/300);
+    height: calc(45px + (100vw - 360px)/300);
+}
+.tinyIcon {
+    width: calc(25px + (100vw - 360px)/100);
+}
 .PlusBtn {
     width: calc(35px + (100vw -  360px)/90);
     height: calc(35px + (100vw -  360px)/90);
 }
 .inputElem {
     height: calc(30px + (100vw -  360px)/90);
+    font-size:calc(1.2rem + (28 - 16) * ((100vw - 360px) / 1560));
+    border-radius: calc(2px + (100vw -  360px)/200);
+}
+.multiLines {
     font-size:calc(1.4rem + (28 - 16) * ((100vw - 360px) / 1560));
-
-}.multiLines {
-    height: calc(30px + (100vw -  360px)/90)*4;
-    font-size:calc(1.4rem + (28 - 16) * ((100vw - 360px) / 1560));
-
+    
 }
 .checkBox {
     width: calc(30px + (100vw -  360px)/90);
@@ -167,6 +184,9 @@ button:active{
 input[type="checkbox"] {
     width: calc(20px + (100vw -  360px)/90);
     height: calc(20px + (100vw -  360px)/90);
+}
+textarea {
+    border-radius: calc(2px + (100vw -  360px)/200);
 }
 input[type="radio"] {
     width: calc(20px + (100vw -  360px)/90);

@@ -9,6 +9,7 @@ var newCoupon = ''
 	document.getElementById('CouponToClipboardButton').addEventListener('click', CouponToClipboard);
 	document.getElementById('CouponToTxtFileButton').addEventListener('click', CouponToTxtFile);
 	document.getElementById('CouponToPDFfileButton').addEventListener('click', CouponToPDFfile);
+	document.getElementById('extraDataBtn').addEventListener('click', ExtraDataInputsToggle);
 	const selectElement = document.querySelector("#standard");
 	selectElement.addEventListener("change", setGUItheme);
 });
@@ -52,6 +53,7 @@ async function CreateCoupon() {
 
 	const actionObj = getUserData()
 	const secKeyAsHexStr = document.getElementById('your_private_key').value
+	console.log('secKeyAsHexStr',secKeyAsHexStr)
 
 	const secKey = window.HexToUI8(secKeyAsHexStr) 
 	const pubKey = await publicKeyFromSecKey(secKey)
@@ -96,13 +98,15 @@ function setGUI(stateOfGUI) {
 	if ( stateOfGUI == 'processNewCoupon' ) {
 		document.getElementById('loadForm').hidden = true
 			document.getElementById('processNewCoupon').hidden = false
-			console.log('in dem if', stateOfGUI)
 			return;
 		}
 		
 	document.getElementById('name_of_coupon').hidden = true
 
 	switch (stateOfGUI) {
+		case 'wertbon':
+			document.getElementById('Title').textContent = 'WertBon schöpfen';
+			break;
 		case 'gedanke':
 			document.getElementById('Title').textContent = 'GeDANKE schöpfen';
 			break;
@@ -141,22 +145,24 @@ function setGUI(stateOfGUI) {
 			}
 		} 
 		
-		function getUserData(){
-			/* existiert ein valider secKey*/
+function getUserData(){
+	/* existiert ein valider secKey*/
+	
 	let secKey = document.getElementById('your_private_key').value
 	/*if (typeof(secKey) != string || length(secKey) != 32 ){
-		alert("gültigen geheimen Schlüssel eingeben. Dieser hat die Form: 1D76F9F47C5DA078CE0A3722319EB876087B7AEF95916B5563B61550BC970104");
+	alert("gültigen geheimen Schlüssel eingeben. Dieser hat die Form: 1D76F9F47C5DA078CE0A3722319EB876087B7AEF95916B5563B61550BC970104");
 	}
 	*/
 	const actionObj = {
-		MODEL_TYPE: '',  // defines the algorithms and transaction methods to use
-		ACTION_TYPE : 'Creation',  // Creation, Tranfer, Split, BLOCKED, HONORED 
+		MODEL_TYPE: '',  // defines the algorithms and transaction methods to use. Option ONLY for developers!
+		ACTION_TYPE : 'creation',  // Creation, Tranfer, Split, BLOCKED, HONORED 
 		STANDARD : document.getElementById('standard').value, //eMinuto, dMinuto, Talente
-		PROMISE : 'Mein Wort an Dich...',
+		PROMISE : 'Mein Wort an Dich: Für diesen Coupon erhältst Du nach Absprache folgende Talente / Ressourcen',
 		HOURS : document.getElementById('hours').value,
 		MINUTES : checkMinutes(),
 		OFFERS : document.getElementById('talents').value,  // things or talents you offer
 		NEEDS : document.getElementById('needs').value,  // things or talents you need
+		COMMENT: document.getElementById('comment').value,  // leave a note resp. comment
 		CONTACT : document.getElementById('contact').value,
 		RECEIVER_EMAIL_ADDRESS : document.getElementById('receiver_email_address').value,
 		RECEIVER_PUB_KEY : document.getElementById('receiver_pub_key').value,
@@ -164,17 +170,17 @@ function setGUI(stateOfGUI) {
 		COMMUNITY : document.getElementById('community').value,  // are you part of a community?
 		NUMBER : document.getElementById('number').value,  // a number or code you can freely choose 
 		EXPIRES : document.getElementById('expires').value, // when does this coupon expire
-		DATE : document.getElementById('curr_date').value,  // date of signature
+		DATE : document.getElementById('signing_date').value,  // date of signature
 		PUBLIC_KEY : addOwnPublicKey(),  // your public key
-		PLACE : document.getElementById('place').value,  // place of signature
+		PLACE : document.getElementById('signing_place').value,  // place of signature
 		ZIP_CODE : '',
+		RESIDENCE: '',  // place of living
 		HASH : '',  // hash value of original coupon
 		STREET : '',
 		HOUSE_NUMBER : getHouseNumber(),
 		GEO_LOCATION : '',
 		NAME: '',  // your legal name (name of the persona)
 		NICKNAME: '',
-		NOTE: '',  // leave a note resp. comment
 		RELATED: '', // your relations to other friends
 		ROLE: '',  // administrator, manifestor etc.
 		LANG: '', // language
@@ -192,7 +198,7 @@ function setGUI(stateOfGUI) {
 		IMPP: '', // Instant Messenger
 		GENDER: '', // male / female
 		ADR : '',  // Adresse
-		CLASS: '', // classification: public or private (pseudo anonym per pool),
+		CLASS: getClassification(), // classification: public or private (pseudo anonym per pool),
 		ONBOARDING: '', // yes, no, auto, manual to the map
 		ADDITIONAL_RESSOURCES: addRessources(),  // e.g. wood, tools, a place to stay
 		TIMESTAMP : Number(new Date()), // current time as number
@@ -204,6 +210,9 @@ function setGUI(stateOfGUI) {
 		RESTRICT_RECIPIENTS :  document.getElementById('restrict_recipients').value,  // e.g. only friends of a certain community can accept this coupon
 		RESTRICT_OFFERS : document.getElementById('restrict_offers').value, // this coupon can not be use in exchange of e.g. alcohol.
 		REDEMPTION_PERIOD: '',  // the time span with this coupon has to bei redemed.
+		SEPARABLE: '',
+		KIDS_COUPON: "",
+		TEST_COUPON: ","
 	} 
 	
 	function addRessources() {
@@ -279,13 +288,21 @@ function checkhours() {
 		return false;
 	}
 	
-	if (hours <= 0 ) {
+	if (hours < 0 ) {
 		// popup: Bitte gebe ein ganze Zahl gleich 0 oder größer ein.
 	  return false;
 	}
 	return hours;
   }
   
+function getClassification() {
+	const classification = document.getElementById('classification')
+	
+	if (classification = true) {
+		return 'private'
+	}
+	
+}
 // let selectedStandard = ''
 // if ( typeof stateOfGUI !== 'string') {
 	// 	stateOfGUI = ''
@@ -294,3 +311,12 @@ function checkhours() {
 	// 	const text = e.options[e.selectedIndex].text;
 	// }
 	
+function ExtraDataInputsToggle() {
+	const visibilityOfInputs =	document.getElementById('extraDataInputs').hidden
+
+	if (visibilityOfInputs) {
+		document.getElementById('extraDataInputs').hidden = false
+	} else {
+		document.getElementById('extraDataInputs').hidden = true
+	}
+}
