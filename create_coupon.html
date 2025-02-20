@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Digitaler Coupon</title>
+		<title>Coupon schöpfen</title>
 		<script src="create_coupon.js"></script>
 		<script src="aux.js"></script>
 		<script src="noble-ed25519.js"></script>
@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 
-	<body>
+	<body id="create_coupon">
 		<div id="container">
 			<div class="content">
 				<div id="Title">
@@ -22,15 +22,17 @@
 					</h1>
 				</div>
 			</div>
+
 			<div class="content">
 				<div id="loadForm">
-					<select id="standard"">
-						<option value="wertbon" selected> WertBon im Freundeskreis</option>
-						<option value="gedanke"> GeDANKE ( Standard-Coupon )</option>
-						<option value="gdc_kids"> Kinder-Coupon</option>
+					<select id="standard" class="input">
+						<option value="" selected>wähle ein Freigeldsystem</option>
+						<option value="wertbon"> WertBon im Freundeskreis</option>
+						<option value="gedanke"> GeDANKE </option>
 						<option value="dank"> DANK - Lichtung Kassel</option>
 						<option value="gutschein_fuer_freunde">Gutschein für Freunde</option>
 						<option value="eminuto"> eMinuto</option>
+						<option value="gdc_kids"> Kinder-Coupon</option>
 						<option value="dminuto">dMinuto</option>
 						<option value="aminuto">Minuto ( analog )</option>
 						<option value="talente">Talente ( digital & analog )</option>
@@ -40,137 +42,220 @@
 					</select>
 				</div>
 				
-			<input type="text" id="name_of_coupon" class="inputElem" placeholder="Gib deinem Freigeld einen Namen" hidden="true" size="40">
+			<input type="text" id="name_of_coupon" class="input inputElem" placeholder="Gib deinem Freigeld einen Namen" hidden="true" size="40">
 			<br>
-			<span id="promise_text">Mein Wort an Dich: Für diesen Coupon erhältst Du die folgenden </span>
-			<input type="text" id="hours" class="inputElem" placeholder="" size="3rem"> Std
-			<input type="text" id="minutes" class="inputElem"  placeholder="" size="2rem"> Min meiner Talente oder 
-			<input type="text" class="gdc inputElem" id="euro" placeholder="" size="3"> Euro oder	
-			<input type="text" class="gdc inputElem" id="silverOz" placeholder="" size="3"> SiberUnzen oder folgende Ressource
-			<button class="btn3D PlusBtn inputElem" title="weitere Ressourcen hinzufügen.">+</button>
+			<span id="promise_text">Mein Wort an Dich: Für diesen Coupon erhältst Du </span>
+			<input type="text" id="hours" class="input inputElem" placeholder="" size="3rem"> Std
+			<input type="text" id="minutes" class="input inputElem"  placeholder="" size="2rem"> Min meiner Talente oder 
+			<input type="text" class="input gdc inputElem" id="euro" placeholder="" size="3"> Euro oder	
+			<!-- <button class="btn3D PlusBtn inputElem" title="weitere Ressourcen hinzufügen.">+</button> -->
+			<label id="extra_ressources_input" class="show_more"> eine der folgenden Ressourcen:</label>
+			<label id="no_extra_ressources_input" class="show_more" hidden><b>Keine</b> weiteren Ressourcen anbieten.</label>
 
-			<div class="add_ressources" hidden="true">
-				<input type="text" class="gdc inputElem" id="additional_ressources" placeholder="" size="3">
-				<select class="gdc inputElem" id="unitsSelect"></select>
+			<div id="add_ressources" hidden>
+				<hr>
+				<input type="text" id="extra_ressources_alternative_currency" class="input gdc inputElem" placeholder="" size="3">  
+				<select id="unitsSelect" class="input gdc inputElem"></select> <br>
+				<input type="text" id="metal_unit" class="input gdc inputElem" id="additional_ressources" placeholder="" size="3">  
+				<select id="metal_unit_type" class="input gdc inputElem"></select>
+				<select id="metal_type" class="input gdc inputElem"></select> 
+				<br>
+				<input type="text" id="crypto_amount" class="input gdc inputElem" id="additional_ressources" placeholder="" size="3">  
+				<select id="crypto_type" class="input gdc inputElem"></select>
 			</div>
+			<textarea id="talents" class="input frac1 multiLines" placeholder="Talente/ Ressourcen" cols="42" rows="4"></textarea>
 			<br>
-			<textarea id="talents" class="frac1 multiLines" placeholder="Talente/ Ressourcen" cols="42" rows="4"></textarea>
+			Die Talente/ Ressourcen werden im Radius von <input type="text" id="range" class="input inputElem" placeholder="10" size="3"> km um folgenden Standort angeboten:
+			<textarea id="geo_location" class="input frac1 inputElem" placeholder="Standort bspw. Köln oder Geodaten 46°14′06.70″N 8°0′55.60″O" rows="1"></textarea>
+			<textarea id="needs" class="input gdc frac1 multiLines" placeholder="Bedarfe" cols="42" rows="3"></textarea>
+			<textarea id="comment" class="input gdc frac1 multiLines" placeholder="Kommentar" cols="42" rows="3"></textarea>
 			<br>
-			Die Talente/ Ressourcen werden im Radius von <input type="text" id="range" class="inputElem" placeholder="10" size="3"> km um folgenden Standort angeboten:
-			<textarea id="geo_location" class="frac1 inputElem" placeholder="Standort bspw. 46°14′06.70″N 8°0′55.60″O" rows="1"></textarea>
-			<textarea class="gdc frac1 multiLines" id="needs" placeholder="Bedarfe" cols="42" rows="3"></textarea>
-			<textarea class="gdc frac1 multiLines" id="comment" placeholder="Kommentar" cols="42" rows="3"></textarea>
-			<br>
-			<input type="checkbox" id="classification" value="0"> Coupon <em>quasi-anonym</em>  im Pool nutzen.  
-			
-			<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
-			
-			<br>
-			<hr>
-			<button id="extraDataBtn" class="frac2" title="weitere Daten eintragen">weitere Daten eintragen (nicht empfohlen!)</button>
-			<div id="extraDataInputs" hidden>
-
-				Für deine Datensicherheit empfehlen wir folgende Felder leer zu lassen!
-				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
-				<br>
-				<textarea id="first_name" class="frac2 inputElem" placeholder="Rufname(n)" rows="1"></textarea>
-				<textarea id="family_name" class="frac2 inputElem" placeholder="Familienname" rows="1"></textarea>
-				<br>
-				<textarea id="place_of_birth" class="frac2 inputElem" placeholder="Geburtsort" rows="1"></textarea>
-				<textarea id="date_of_birth" class="frac2 inputElem" placeholder="Geburtsdatum" rows="1"></textarea>
-				<textarea id="BIRTH_NAME" class="frac2 inputElem" placeholder="Geburtsname" rows="1"></textarea>
-				<textarea id="nationality" class="frac2 inputElem" placeholder="Nationalität" rows="1"></textarea><br>
-				<textarea id="street" class="frac2 inputElem" placeholder="Straße" rows="1"></textarea>
-				<textarea id="house_number" class="frac6 inputElem" placeholder="Nr." rows="1"></textarea>
-				<br>
-				<textarea id="zip_code" class="frac6 inputElem" placeholder="PLZ" rows="1"></textarea>
-				<textarea id="residence" class="frac2 inputElem" placeholder="Wohnort" rows="1"></textarea>
-			</div>
-			<hr>
+		
 			Kontaktdaten
 			<br>
-			<textarea id="nickname" class="frac2 inputElem" placeholder="Spitzname" rows="1"></textarea>
-			<textarea class="gdc frac2 inputElem" id="your_email_address" placeholder="Deine Email-Adresse" cols="42" rows="1"></textarea>
-			<textarea id="telegram" class="frac2 inputElem" placeholder="telegram-Name" rows="1"></textarea>
-			<textarea id="website" class="frac2 inputElem" placeholder="Internet-Seite" rows="1"></textarea>
-			<textarea id="whatsapp" class="frac2 inputElem" placeholder="whatsapp-Name" rows="1"></textarea>
-			<textarea id="matrix" class="frac2 inputElem" placeholder="Matrix-Name" rows="1"></textarea>
-			<textarea class="gdc frac1 inputElem" id="contact" placeholder="weitere Kontaktdaten" cols="42" rows="3"></textarea>
-			<textarea class="gdc frac1 inputElem" id="community"  placeholder="Mein(e) Gemeinschaft(en)" cols="42" rows="1"></textarea>
-			<br>
-			<hr>
-			<input type="checkbox" id="split_coupon" class="inputElem" value="0"> Der Coupons ist teilbar.
-			<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
-			<br>				
-			<input type="checkbox" id="onboarding" class="inputElem" value="0"> Automatisches Karten-Onboarding.
-			<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
-			<br>
-			Die Schwundrate beträgt <input class="gdc inputElem" type="text" id="decrease_rate"  placeholder="0" size="1">% pro Jahr<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>  und dient 
-			<input class="gdc frac1 inputElem" type="text" id="decrease_rate"  placeholder="dem Kindergarten Neustadt e.V." size="30">
-			<br>
-			<input type="checkbox" id="test_coupon" class="checkBox" value="0"> TEST-Coupon erstellen.<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+			<textarea id="nickname" class="input frac2 inputElem" placeholder="Spitzname" rows="1"></textarea>
+			<textarea id="your_email_address" class="input gdc frac2 inputElem" placeholder="Deine Email-Adresse" cols="42" rows="1"></textarea>
+			<textarea id="telegram" class="input frac2 inputElem" placeholder="Telegram-Name" rows="1"></textarea>
+			<textarea id="impp" class="input frac2 inputElem" placeholder="IMPP" rows="1"></textarea>
 
-			<br>
-			<input type="checkbox" id="kinder_coupon" value="0"> Kinder-Coupon erstellen. <a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
-			<br>			
-			<input type="text" class="gdc frac1 inputElem" id="restrict_recipients" placeholder="Nutzerkreis begrenzen (bspw. auf deinen Schebergarten e.V.)" size="30">
-			<br>
-			<input type="text" class="gdc frac1 inputElem" id="restrict_offers" placeholder="Produktausnahmen (bspw. kein Alkohol, kein Sex)" size="30">
-			<br>
-			<input type="text" id="guarantor" class="frac1 inputElem" placeholder="Bürgen angeben" size="30">
-			<!-- <button class="btn3D PlusBtn  inputElem" title="">+</button> -->
+			<textarea id="website" class="input frac2 inputElem" placeholder="Internet-Seite" rows="1"></textarea>
+			<textarea id="whatsapp" class="input frac2 inputElem" placeholder="whatsapp-Name" rows="1"></textarea>
+			<textarea id="matrix" class="input frac2 inputElem" placeholder="Matrix-Name" rows="1"></textarea>
+			<textarea id="other_messenger" class="input frac2 inputElem" placeholder="ein anderer Messenger" rows="1"></textarea>
+			<textarea class="input gdc frac1 inputElem" id="contact" placeholder="weitere Kontaktdaten" cols="42" rows="3"></textarea>
+			<textarea class="input gdc frac1 inputElem" id="community"  placeholder="Mein(e) Gemeinschaft(en)" cols="42" rows="1"></textarea>
 			<br>
 			
 			<div>
 				<hr>
-				Dieser Coupon kann <br>
-				<input type="checkbox"  checked="checked" value="non_commercial_use"> 
+				Dieser Coupon ist nutzbar: <br>
+				<label class="switch">
+					<input type="checkbox" id="private_use" class="input" checked="checked" >
+					<span class="slider round"></span>
+				</label>
+				
 				privat, nicht-kommerziell im Freundeskreis
 				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
 				<br>
-				<input type="checkbox" name="option" value="commercial_use"> kommerziell, besteuert im Handelsrecht 
+				<label class="switch">
+					<input type="checkbox" id="commercial_use" class="input">
+					<span class="slider round"></span>
+				</label> 
+				kommerziell, besteuert im Handelsrecht 
 				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
 				<br>
-				genutzt werden.
+				
+				<div id="commercial_use_inputs" hidden>
+					<select id="title" class="input">
+						<option value="anrede" selected>Anrede</option>
+						<option value="frau">Frau </option>
+						<option value="herr">Herr</option>
+						<option value="firma">Firma</option>
+						<option value="verein">Verein</option>
+					</select>
+					<br>
+					<textarea id="first_name" class="input frac2 inputElem" placeholder="Vorname(n)" rows="1"></textarea>
+					<textarea id="family_name" class="input frac2 inputElem" placeholder="Familienname" rows="1"></textarea>
+					<br>
+					<textarea id="street" class="input frac2 inputElem" placeholder="Straße" rows="1"></textarea>
+					<textarea id="house_number" class="input frac6 inputElem" placeholder="Nr." rows="1"></textarea>
+					<br>
+					<textarea id="zip_code" class="input frac6 inputElem" placeholder="PLZ" rows="1"></textarea>
+					<textarea id="residence" class="input frac2 inputElem" placeholder="Wohnort" rows="1"></textarea>
+					<textarea id="tax_number" class="input frac2 inputElem" placeholder="Steuernummer" rows="1"></textarea>
+				</div> 
+				
+				<hr>
+
+				<label id="extra_properties_input" class="show_more">Weitere Eigenschaften definieren ...</label>
+
+
+				<div id="extra_properties" hidden>
+					<input type="checkbox" id="quasi_anonym" class="input" default="0"> Coupon <em>quasi-anonym</em>  im Pool nutzen.  			
+					<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+					<br>
+					<input type="checkbox" id="splitable_coupon" class="input inputElem" default="0"> Der Coupons ist teilbar.
+					<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+					<br>				
+					<input type="checkbox" id="onboarding" class="input inputElem" default="0"> Automatisches Karten-Onboarding.
+					<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+					<br>
+					Die Schwundrate beträgt <input class="input gdc inputElem" type="text" id="decrease_rate"  placeholder="0" size="1">% pro Jahr<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>  und dient 
+					<input class="input gdc frac1 inputElem" type="text" id="decrease_rate_purpose" placeholder="dem Kindergarten Neustadt e.V." size="30">
+					<br>
+					<input type="text" class="input gdc frac1 inputElem" id="restrict_recipients" placeholder="Nutzerkreis begrenzen (bspw. auf deinen Schebergarten e.V.)" size="30">
+					<br>
+					<input type="text" class="input gdc frac1 inputElem" id="restrict_offers" placeholder="Produktausnahmen (bspw. kein Alkohol, kein Sex)" size="30">
+					<br>
+					<input type="text" id="guarantor" class="input frac1 inputElem" placeholder="Bürgen angeben" size="30">
+					<!-- <button class="btn3D PlusBtn  inputElem" title="">+</button> -->
+					<input type="checkbox" id="test_coupon" class="input checkBox"> TEST-Coupon erstellen.<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
+					<br>
+					<input type="checkbox" id="kids_coupon" class="input"> Kinder-Coupon erstellen. <a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>		
+					<hr>
+				</div>
+			</div>
+			<hr>
+			<label id="extra_data_input" class="show_more">Weitere optionale Daten eintragen ...</label>
+
+			<div id="extraDataInputs" hidden>
+
+				<b>WICHTIG:</b> Für deine Datensicherheit empfehlen wir folgende <b>Felder leer zu lassen</b> !
+				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a>
 				<br>
-				Er ist gültig ab dem 
-				<input type="text" id="startdate" class="inputElem"  placeholder="gültig ab" size="10">
-				und verliert seinen Wert am 
-				<input type="text" id="expires" class="inputElem"  placeholder="Ablaufdatum" size="10">
-				Der Coupon ist innerhalb von  
-				<input type="text" id="acceptance_period1" class="inputElem" placeholder="14" size="3"> Tagen, ab dem Zeitpunkt der Weitergabe, anzunehmen.
-				<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a> <br>
+				<textarea id="first_name" class="input frac2 inputElem" placeholder="Vorname(n)" rows="1"></textarea>
+				<textarea id="family_name" class="input frac2 inputElem" placeholder="Familienname" rows="1"></textarea>
+				<textarea id="birth_name" class="input frac2 inputElem" placeholder="Geburtsname" rows="1"></textarea>
+				<br>
+				<textarea id="place_of_birth" class="input frac2 inputElem" placeholder="Geburtsort" rows="1"></textarea>
+				<textarea id="date_of_birth" class="input frac2 inputElem" placeholder="Geburtsdatum" rows="1"></textarea>
+				<textarea id="nationality" class="input frac2 inputElem" placeholder="Nationalität" rows="1"></textarea><br>
+				<textarea id="street" class="input frac2 inputElem" placeholder="Straße" rows="1"></textarea>
+				<textarea id="house_number" class="input frac6 inputElem" placeholder="Nr." rows="1"></textarea>
+				<br>
+				<textarea id="related" class="input frac2 inputElem" placeholder="befreundet mit" rows="1"></textarea>
+				<textarea id="role" class="input frac2 inputElem" placeholder="Rolle bspw. Administrator" rows="1"></textarea>
+				<textarea id="language" class="input frac2 inputElem" placeholder="Sprache" rows="1"></textarea>
+				<textarea id="phone" class="input frac2 inputElem" placeholder="Telefon-Nummer" rows="1"></textarea>
+				
+				<textarea id="time_zone" class="input frac2 inputElem" placeholder="Zeit-Zone" rows="1"></textarea>
+				<textarea id="phone" class="input frac2 inputElem" placeholder="Telefon-Nummer" rows="1"></textarea>
+				<textarea id="expertise" class="input frac2 inputElem" placeholder="Expertise" rows="1"></textarea>
+				<textarea id="hobby" class="input frac2 inputElem" placeholder="Hobbys" rows="1"></textarea>
+				<textarea id="interests" class="input frac2 inputElem" placeholder="Interessen" rows="1"></textarea>
+				<textarea id="hobby" class="input frac2 inputElem" placeholder="Hobby" rows="1"></textarea>
+				<div>
+					<select id="gender" class="input">
+						<option value="" selected>wähle ein Geschlecht</option>
+						<option value="female">weiblich</option>
+						<option value="male">männlich</option>
+					</select>
+				</div>
 			</div>
 			
-				<button class="btn3D PlusBtn inputElem" title="weitere Ressourcen hinzufügen.">+</button>
-				<div id="special_settings" hidden>
-					<input type="text" id="number" class="frac4 inputElem" placeholder="Nr/Code" size="10">
-
-				</div>
-
+			<div>
 				<div>
 					<hr>
-					<input type="radio"  checked="checked" value="send_coupon_now"> Coupon an einen Freund senden oder 
-					<input type="radio" name="option" value="save_coupon"> speichern für den späteren Gebrauch.
+					<input type="radio" id="send_coupon_now"> Coupon an einen Freund senden oder 
+					<input type="radio" id="save_coupon" checked> speichern für den späteren Gebrauch.
 					<br>
-					<textarea class="gdc  frac1 inputElem" id="receiver_email_address" placeholder="Empfänger-Email-Adresse" cols="42" rows="1"></textarea>
-					<textarea class="gdc frac1 inputElem" id="receiver_pub_key" placeholder="Empfänger-Public-Key" cols="42" rows="1"></textarea>
-					<hr>
+					<div id="recipient_data" hidden>
+						<textarea class="input gdc frac1 inputElem" id="receiver_email_address" placeholder="Empfänger-Email-Adresse" cols="42" rows="1"></textarea>
+						<textarea class="input gdc frac1 inputElem" id="receiver_pub_key" placeholder="Empfänger-Public-Key" cols="42" rows="1"></textarea>
+					</div>
 				</div>
 				
-				<div>
 
-					Schöpfe (= signiere) Deinen Coupon mit deinem privaten (geheimen) Schlüssel (32 Stellen). <br>
-					<input type="text" id="your_private_key" class="frac1 inputElem" placeholder="Dein PRIVATER Schlüssel zum Signieren." size="64">
-					<br>
-					Ort: <input type="text" id="signing_place"  class="inputElem" placeholder="Ort der Signatur" size="20">
-					Datum:  <input type="text" id="signing_date" class="frac4 inputElem" placeholder="Datum" size="10">
-					<br>
-					Wichtig: Es werden nur sichtbare Daten im Coupon gespeichert!
-					<br>
-					<button id="CreateCouponBtn" class="btn3D" title="coupon schöpfen.">Coupon schöpfen</button>
+				<hr>
+				<div id="standard_expire_data_input">
+
+					Dieser Coupon ist ab dem Schöpfungstag für 
+					<input type="text" class="input gdc inputElem" id="validity_years" placeholder="3" value="3" size="1"> Jahre gültig. 
 				</div>
+				
+				<div id="more_expire_data_input" hidden>
+					Dieser Coupon ist ab dem 
+					<input type="text" id="start_date" class="input inputElem"  placeholder="gültig ab" size="8"> 
+					um  
+					<input type="text" class="input gdc inputElem" id="start_time" placeholder="0:00" size="3"> 
+					Uhr für 
+					<input type="text" class="input gdc inputElem" id="validity_years" value="3" size="1"> 
+					Jahr(e) 
+					<input type="text" class="input gdc inputElem" id="validity_days" value="0" size="2">
+					Tag(e) und 
+					<input type="text" class="input gdc inputElem" id="validity_hours" value="0" size="2">
+					Stunde(n) gültig. 
+					<br>
+					ODER gebe ein Ablaufdatum an: 
+					<input type="text" id="expires" class="input gdc inputElem" placeholder="2028.01.01" size="10">
+					<!-- <button id="toggle_specify_validity_period" class="btn3D PlusBtn inputElem" title="Gültigkeit definieren.">+</button> -->
+					
+					<br>
+					Ab der Weitergabe ist der Coupon innerhalb von  
+					<input type="text" id="acceptance_period" class="input inputElem" value="14" placeholder="14" size="3"> Tagen anzunehmen.
+					<a href="index.html"><img src="./images/info.svg" class="tinyIcon"> </a> 
+				</div> 
+				<label id="toggle_expire_data_input" class="show_more">Zeige weitere Optionen .... </label>
+				<hr>
 
+				<div>
+					Schöpfe (= signiere) Deinen Coupon mit deinem privaten (geheimen) Schlüssel (64 Stellen). <br>
+					<input type="text" id="your_private_key" class="input frac1 inputElem" placeholder="Dein PRIVATER Schlüssel zum Signieren." size="64">
+					<br>
+					Ort: <input type="text" id="signing_place"  class="input inputElem" placeholder="Ort der Signatur" size="20">
+					Schöpfungstag:  <input type="text" id="signing_date" class="frac4 inputElem" placeholder="Datum" size="10">
+					<input type="text" id="number" class="input frac4 inputElem" value = "" placeholder="optionale/r Nummer / Code" size="10">
+
+					<br>
+					<br>
+					Wichtig: Es werden nur <u>sichtbare Daten</u> im Coupon gespeichert!
+					<br>
+					<br>
+					<button id="createCouponBtn" class="btn3D frac1" title="Coupon Schöpfen.">Coupon schöpfen</button>
+
+					<br>
+					<br>
+				</div>
 			<div id="processNewCoupon" hidden>
 				<textarea id="OutputCoupon" cols="42" rows="25"></textarea>
 				<button id="CouponToEmailButton" title="als Email senden.">als Email senden</button>
@@ -179,11 +264,11 @@
 				<button id="CouponToPDFfileButton" title="als PDF-Datei speichern.">als PDF-Datei speichern</button>
 			</div>
 		</div>
-			<!-- <div>
+			<div>
 				<img src="./images/no-pyramid_darkmode.svg" class="footer-icons">
 				<img src="./images/publicdomain.svg" class="footer-icons">
 				<img src="./images/ai-free.svg" class="footer-icons">
-			</div> -->
+			</div>
 		</div>
 	</body>
 	</html>
